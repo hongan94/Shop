@@ -19,7 +19,8 @@
 }
 .mg-top {
   margin-top: 60px;
-  .col-lg-2 {
+  display: inline-block;
+  .col-xs-2 {
     padding-left: 0
   }
 }
@@ -29,13 +30,13 @@
   }
 }
 .pr_discount {
-  .col-lg-4 {
+  .col-xs-4 {
     text-align: center;
   }
 }
 .mom_baby{
   border-top: 2px solid red;
-  .col-lg-2 {
+  .col-xs-2 {
     background-color: red;
     height: 88px;
   }
@@ -66,7 +67,7 @@
 }
 .fashion {
   border-top: 2px solid #f8b93e;
-  .col-lg-2 {
+  .col-xs-2 {
     background-color: #f8b93e;
     height: 88px;
   }
@@ -85,4 +86,20 @@
     left: 25px;
   }
 }
-
+.container {
+  width: 1170px !important;
+}
+.search {
+  display: inline-flex;
+  width: 100% !important;
+  .btn-default {
+    margin-left: 5px;
+    height: 33px;
+  }
+  .form-group {
+    width: 100%;
+    .form-control {
+      width: 100%
+    }
+  }
+}

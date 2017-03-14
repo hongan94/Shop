@@ -1,18 +1,18 @@
 = content_for :advertisement
   .row.pr_discount
     - @post_array.each do |product|
-      .col-lg-4
+      .col-xs-4
         = link_to image_tag(product[:image]), product[:link]
         br
         h6
           = product[:title]
 .container
   .row.mom_baby
-    .col-lg-2
+    .col-xs-2
       = link_to image_tag("mom_baby", width: 30, heigth: 30), "#"
       h5.title
         | Mẹ và bé
-    .col-lg-9
+    .col-xs-9
       .category
         .ct2
           = link_to image_tag("sua", width: 60, height:45)
@@ -51,11 +51,11 @@
           h5
             | Xe & các thiết bị
   .row.fashion
-    .col-lg-2
+    .col-xs-2
       = link_to image_tag("dress", width: 30, heigth: 30), "#"
       h5.title
         | Thời trang
-    .col-lg-9
+    .col-xs-9
       .category
         .ct2
           = link_to image_tag("sua", width: 60, height: 45)

@@ -29,6 +29,8 @@ gem 'capistrano3-unicorn'
 gem 'unicorn'
 gem 'mechanize'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'simple_form'
+gem "font-awesome-rails"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -40,6 +42,12 @@ gem 'bootstrap-sass', '~> 3.3.6'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rubocop', require: false
+  gem 'rack-mini-profiler'
+  gem 'rails_best_practices'
+  gem 'byebug'
+  gem 'bullet'
+  gem 'faker'
   gem 'capistrano', '~> 3.7'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
