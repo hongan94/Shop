@@ -2,8 +2,9 @@ html
   head
     title
       | Shop
+    meta[name="viewport" content="width=device-width, initial-scale=1"]
     = csrf_meta_tags
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', :media => 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
@@ -11,8 +12,8 @@ html
       .row
         = render "layouts/header"
       .row.mg-top
-        .col-lg-2
+        .col-xs-2
           = render "layouts/menu"
-        .col-lg-10
+        .col-xs-10
           = yield :advertisement
       = yield
