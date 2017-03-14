@@ -1,0 +1,13 @@
+h1
+  - if flash[:notice].present?
+    = flash[:notice]
+  br
+  | Profile user:
+  br
+  = current_user.email
+  br
+  = current_user.provider
+  br
+  = link_to 'pdf' ,  thing_index_path(format: :pdf)
+  br
+  = link_to 'show',  thing_path

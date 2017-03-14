@@ -1,0 +1,95 @@
+= content_for :advertisement
+  .row.pr_discount
+    - @post_array.each do |product|
+      .col-lg-4
+        = link_to image_tag(product[:image]), product[:link]
+        br
+        h6
+          = product[:title]
+.container
+  .row.mom_baby
+    .col-lg-2
+      = link_to image_tag("mom_baby", width: 30, heigth: 30), "#"
+      h5.title
+        | Mẹ và bé
+    .col-lg-9
+      .category
+        .ct2
+          = link_to image_tag("sua", width: 60, height:45)
+          h5
+            | Sữa & bộ cho bé
+        .ct2
+          = link_to image_tag("dodung", width: 60, height:45)
+          h5
+            | Đồ dùng cho bé
+        .ct2
+          = link_to image_tag("dochoi", width: 60, height:45)
+          h5
+            | Đồ chơi & đồ dùng
+        .ct2
+          = link_to image_tag("quanao", width: 60, height:45)
+          h5
+            | Quần sáo sơ sinh
+        .ct2
+          = link_to image_tag("thucpham", width: 60, height:45)
+          h5
+            | Thực phẩm
+        .ct2
+          = link_to image_tag("thoitrang", width: 60, height:45)
+          h5
+            | Thời trang cho mẹ
+        .ct2
+          = link_to image_tag("vesinh", width: 60, height:45)
+          h5
+            | Vệ sinh cho bé
+        .ct2
+          = link_to image_tag("chamsoc", width: 60, height:45)
+          h5
+            | Chăm sóc cho mẹ
+        .ct2
+          = link_to image_tag("xe", width: 60, height:45)
+          h5
+            | Xe & các thiết bị
+  .row.fashion
+    .col-lg-2
+      = link_to image_tag("dress", width: 30, heigth: 30), "#"
+      h5.title
+        | Thời trang
+    .col-lg-9
+      .category
+        .ct2
+          = link_to image_tag("sua", width: 60, height: 45)
+          h5
+            | Sữa & bộ cho bé
+        .ct2
+          = link_to image_tag("dodung", width: 60, height: 45)
+          h5
+            | Đồ dùng cho bé
+        .ct2
+          = link_to image_tag("dochoi", width: 60, height: 45)
+          h5
+            | Đồ chơi & đồ dùng
+        .ct2
+          = link_to image_tag("quanao", width: 60, height: 45)
+          h5
+            | Quần sáo sơ sinh
+        .ct2
+          = link_to image_tag("thucpham", width: 60, height: 45)
+          h5
+            | Thực phẩm
+        .ct2
+          = link_to image_tag("thoitrang", width: 60, height: 45)
+          h5
+            | Thời trang cho mẹ
+        .ct2
+          = link_to image_tag("vesinh", width: 60, height: 45)
+          h5
+            | Vệ sinh cho bé
+        .ct2
+          = link_to image_tag("chamsoc", width: 60, height: 45)
+          h5
+            | Chăm sóc cho mẹ
+        .ct2
+          = link_to image_tag("xe", width: 60, height: 45)
+          h5
+            | Xe & các thiết bị
