@@ -121,3 +121,11 @@ nav.navbar.navbar-default.menu
           | Cancel
         = link_to destroy_user_session_path, method: :delete, class: 'btn btn-default'
           | Ok
+
+javascript:
+  $(document).ready(function()
+  {
+      $('.title_big .col-xs-2').each(function (e) {
+          $(this).addClass("list" + e);
+      });
+  });

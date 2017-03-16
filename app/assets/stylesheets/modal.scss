@@ -38,7 +38,7 @@ abbr {
 .hover {
   background-color: #55b4db !important;
 }
-a.hover:after {
+a.list-group-item.hover:after {
   content: '';
   position: absolute;
   border-style: solid;
@@ -50,4 +50,9 @@ a.hover:after {
   margin-top: -22px;
   right: -5px;
   top: 50%;
+}
+.modal-content {
+  .form-control {
+    width: 100% !important;
+  }
 }

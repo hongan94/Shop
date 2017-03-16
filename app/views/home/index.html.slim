@@ -7,89 +7,29 @@
         h6
           = product[:title]
 .container
-  .row.mom_baby
-    .col-xs-2
-      = link_to image_tag("mom_baby", width: 30, heigth: 30), "#"
-      h5.title
-        | Mẹ và bé
-    .col-xs-9
-      .category
-        .ct2
-          = link_to image_tag("sua", width: 60, height:45)
-          h5
-            | Sữa & bộ cho bé
-        .ct2
-          = link_to image_tag("dodung", width: 60, height:45)
-          h5
-            | Đồ dùng cho bé
-        .ct2
-          = link_to image_tag("dochoi", width: 60, height:45)
-          h5
-            | Đồ chơi & đồ dùng
-        .ct2
-          = link_to image_tag("quanao", width: 60, height:45)
-          h5
-            | Quần sáo sơ sinh
-        .ct2
-          = link_to image_tag("thucpham", width: 60, height:45)
-          h5
-            | Thực phẩm
-        .ct2
-          = link_to image_tag("thoitrang", width: 60, height:45)
-          h5
-            | Thời trang cho mẹ
-        .ct2
-          = link_to image_tag("vesinh", width: 60, height:45)
-          h5
-            | Vệ sinh cho bé
-        .ct2
-          = link_to image_tag("chamsoc", width: 60, height:45)
-          h5
-            | Chăm sóc cho mẹ
-        .ct2
-          = link_to image_tag("xe", width: 60, height:45)
-          h5
-            | Xe & các thiết bị
-  .row.fashion
-    .col-xs-2
-      = link_to image_tag("dress", width: 30, heigth: 30), "#"
-      h5.title
-        | Thời trang
-    .col-xs-9
-      .category
-        .ct2
-          = link_to image_tag("sua", width: 60, height: 45)
-          h5
-            | Sữa & bộ cho bé
-        .ct2
-          = link_to image_tag("dodung", width: 60, height: 45)
-          h5
-            | Đồ dùng cho bé
-        .ct2
-          = link_to image_tag("dochoi", width: 60, height: 45)
-          h5
-            | Đồ chơi & đồ dùng
-        .ct2
-          = link_to image_tag("quanao", width: 60, height: 45)
-          h5
-            | Quần sáo sơ sinh
-        .ct2
-          = link_to image_tag("thucpham", width: 60, height: 45)
-          h5
-            | Thực phẩm
-        .ct2
-          = link_to image_tag("thoitrang", width: 60, height: 45)
-          h5
-            | Thời trang cho mẹ
-        .ct2
-          = link_to image_tag("vesinh", width: 60, height: 45)
-          h5
-            | Vệ sinh cho bé
-        .ct2
-          = link_to image_tag("chamsoc", width: 60, height: 45)
-          h5
-            | Chăm sóc cho mẹ
-        .ct2
-          = link_to image_tag("xe", width: 60, height: 45)
-          h5
-            | Xe & các thiết bị
+  - @bigcategory.each do |big|
+    .row.title_big
+      .col-xs-2
+        input.hidden value="#{@bigcategory.count}"
+        = link_to image_tag(big.image, width: 30, heigth: 30), "#"
+        h5.title
+          = big.name
+      .col-xs-9
+        .row
+          .category
+            - big.categories.each do |category|
+              .ct2
+                = link_to image_tag(category.image, width: 60, height:45)
+                h5
+                  = category.name
+          .row
+            - Product.where(category_id: Category.find_by(bigcategory_id: big.id)).last(6).each do |product|
+              .image.col-xs-4
+                = link_to image_tag(product.image, width: 300, height: 150)
+                .price style="color: red; text-align: center"
+                  = product.price
+                  span
+                    | &nbsp;
+                    | VND
+
+
