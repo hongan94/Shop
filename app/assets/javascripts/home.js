@@ -8,7 +8,9 @@ $(document).ready(function(){
     $('.modal-footer .btn-default').hover(function(e){
         $(this).toggleClass('hover');
     });
-    $('.menu-left li a').hover(function(e){
+    $('.menu-left li a.list-group-item').hover(function(e){
         $(this).toggleClass('hover');
     });
+
+
 });

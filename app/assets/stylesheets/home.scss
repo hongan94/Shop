@@ -34,11 +34,13 @@
     text-align: center;
   }
 }
-.mom_baby{
+.title_big {
   border-top: 2px solid red;
   .col-xs-2 {
-    background-color: red;
     height: 88px;
+  }
+  .col-xs-9 {
+    width: 83%;
   }
   a {
     color: #fff;
@@ -103,3 +105,9 @@
     }
   }
 }
+.list0 { background-color: red !important; }
+.list1 { background-color: #55B4DB !important;}
+.list2 { background-color: yellow !important; }
+.list3 { background-color: green; }
+.list4 { background-color: orangered; }
+.list5 { background-color: pink; }

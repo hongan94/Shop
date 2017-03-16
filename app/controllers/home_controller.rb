@@ -20,5 +20,6 @@ class HomeController < ApplicationController
         @post_array[n] = {title: title, description: description, link: link, image: image }
       end
     end
+    @bigcategory = Bigcategory.all
   end
 end
