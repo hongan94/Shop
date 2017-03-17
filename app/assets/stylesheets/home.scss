@@ -96,12 +96,13 @@
   width: 100% !important;
   .btn-default {
     margin-left: 5px;
-    height: 33px;
+    height: 33px !important;
   }
   .form-group {
     width: 100%;
     .form-control {
-      width: 100%
+      width: 100%;
+      height: 33px !important;
     }
   }
 }
@@ -111,3 +112,12 @@
 .list3 { background-color: green; }
 .list4 { background-color: orangered; }
 .list5 { background-color: pink; }
+
+li {
+  input {
+    height: 30px !important;
+  }
+}
+.btn-default {
+  height: 33px !important;
+}

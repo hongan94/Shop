@@ -8,10 +8,35 @@ ActiveAdmin.register Category do
 		selectable_column
 		id_column
 		column :name
-		column :image
+		column :image do |image|
+			image_tag image.image, class: 'my_image_size'
+		end
 		column :description
-		column :bigcategory_id
+		column :bigcategory_id do |big|
+			Bigcategory.find(big.bigcategory)
+		end
+		# edit button view , edit , delete
+		  # actions defaults: false do |post|
+		  #   item "View", admin_category_path(post), class: 'action action_view', type: "button" do
+				# 	fa_icon "camera-retro"
+				# end
+				# item "Edit", edit_admin_category_path(post), class: 'action action_edit'
+				# item "Delete", admin_category_path(post), method: :delete, data: {confirm: "Are you sure ?"}, class: 'action action_delete'
+		  # end
 		actions
+	end
+
+	show do #hien thi o page show
+		attributes_table do
+			row :name
+			row :image do |image|
+				image_tag image.image, class: 'my_image_size'
+			end
+			row :description
+			row :bigcategory
+			row :created_at
+			row :updated_at
+		end
 	end
 
 	action_item only: :show do #  them nut button cho page show
