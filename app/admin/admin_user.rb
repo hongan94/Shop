@@ -22,6 +22,7 @@ ActiveAdmin.register AdminUser do
       row :name
       row :email
 			row :created_at
+			row :updated_at
     end
 	end
 

@@ -2,17 +2,22 @@ ActiveAdmin.register Product do
 	# Strong parameters trong Rails
 	# cho phép Rails controllers nhận giá trị truyền từ views
 	# Cho các thuộc tính được khai báo dưới đây
-	permit_params :image, :name, :description, :price, :qty, :category_id
+	permit_params :image, :name, :description, :price, :qty, :category_id, :brand_id
 
 	index do
 		selectable_column
 		id_column
 		column :name
-		column :image
+		column :image do |image|
+			image_tag image.image , class: 'my_image_size'
+		end
 		column :description
-		column :price
+		column :price, as: :currency, unit: "$", separator: ","
 		column :qty
-		column :category_id
+		column :category_id do |cate|
+			Category.find(cate.category)
+		end
+		column :brand_id
 		actions
 	end
 
@@ -32,6 +37,7 @@ ActiveAdmin.register Product do
 			f.input :price
 			f.input :qty
 			f.input :category_id, label: 'Category', as: :select, collection: Category.all, include_blank: false
+			f.input :brand_id, label: 'Brand', as: :select, collection: Brand.all, include_blank: false
 		end
 		f.actions
 	end

@@ -10,8 +10,93 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
+@import "font-awesome";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "active_admin_flat_skin";
+
+$panelBorder: #babdc5;
+$skinActiveColor: #e73c3c;
+$bodyColor: rgba(236, 240, 241, 0.48);
+$skinBlack: rgb(55, 71, 79);
+$panelHeaderBck: $skinBlack;
+$skinBlackLight: rgb(69, 90, 100);
+$textGray: rgb(174, 179, 181);
+$skinTextColor: #1e2a33;
+$skinTextActiveColor: white;
+$skinTextTable: #7f8c8d;
+$skinHeaderBck: #1e2a33;
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+.my_image_size {
+  width: 50px;
+  height: 50px;
+}
+a.action {
+  border-radius: 200px;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.0em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 12px;
+  margin-right: 3px;
+  padding: 7px 16px 6px;
+  text-decoration: none;
+  background-color: #FFFFFF;
+  border: solid 1px #c7c7c7;
+  text-shadow: #fff 0 1px 0;
+  color: #fff;
+}
+a.action_view {
+  background-color: green;
+}
+a.action_edit {
+  background-color: orangered;
+}
+a.action_delete {
+  background-color: red;
+}
+
+.label {
+  color: #000;
+}
+abbr {
+  color: red !important;
+}
+input {
+  height: 40px !important;
+}
+.header-item{
+  a {
+    height: 45px !important;
+  }
+}
+.site_title {
+  height: 66px !important;
+}
+form {
+  input[type="text"] {
+    height: 30px !important;
+  }
+  input[type="date"] {
+    height: 30px !important;
+  }
+  input[type="number"] {
+    height: 30px !important;
+  }
+  select {
+    height: 30px !important;
+  }
+}
+li {
+  .cancel {
+    a {
+      padding: 15px 20px !important;
+      background: #e73c3c !important;
+    }
+  }
+}
