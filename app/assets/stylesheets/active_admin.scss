@@ -78,20 +78,7 @@ input {
 .site_title {
   height: 66px !important;
 }
-form {
-  input[type="text"] {
-    height: 30px !important;
-  }
-  input[type="date"] {
-    height: 30px !important;
-  }
-  input[type="number"] {
-    height: 30px !important;
-  }
-  select {
-    height: 30px !important;
-  }
-}
+
 li {
   .cancel {
     a {
@@ -99,4 +86,11 @@ li {
       background: #e73c3c !important;
     }
   }
+}
+.sidebar_section {
+  position: relative;
+  top: -12px;
+}
+#output {
+  margin-left: 21%;
 }
