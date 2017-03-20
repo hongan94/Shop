@@ -50,7 +50,23 @@ ActiveAdmin.register Category do
 	form do |f|
 		f.inputs "Category Details" do
 			f.input :name
-			f.input :image
+			f.input :image, input_html: { class: 'image' }
+			if params[:id].present?
+				category = Category.find(params[:id])
+				if category.image.present?
+					div class: 'preview_image' do
+						image_tag(category.image ,height: 120, width: 180, id: "output")
+					end
+				else
+					div class: 'hidden preview_image' do
+						image_tag('' ,height: 120, width: 180, id: "output")
+					end
+				end
+			else
+				div class: 'hidden preview_image' do
+					image_tag('' ,height: 120, width: 180, id: "output")
+				end
+			end
 			f.input :description
 			f.input :bigcategory_id, label: 'Bigcategory', as: :select, collection: Bigcategory.all, include_blank: false
 		end

@@ -35,6 +35,8 @@ gem 'simple_form'
 gem "font-awesome-rails"
 gem 'chartkick'
 gem 'active_admin_flat_skin'
+gem 'kaminari'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

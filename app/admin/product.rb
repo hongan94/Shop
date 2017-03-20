@@ -32,7 +32,23 @@ ActiveAdmin.register Product do
 	form do |f|
 		f.inputs "Product Details" do
 			f.input :name
-			f.input :image
+			f.input :image, input_html: { class: 'image' }
+			if params[:id].present?
+				product = Product.find(params[:id])
+				if product.image.present?
+					div class: 'preview_image' do
+						image_tag(product.image ,height: 120, width: 180, id: "output")
+					end
+				else
+					div class: 'hidden preview_image' do
+						image_tag('' ,height: 120, width: 180, id: "output")
+						end
+				end
+			else
+				div class: 'hidden preview_image' do
+					image_tag('' ,height: 120, width: 180, id: "output")
+				end
+			end
 			f.input :description
 			f.input :price
 			f.input :qty

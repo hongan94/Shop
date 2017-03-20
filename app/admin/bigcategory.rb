@@ -37,7 +37,17 @@ ActiveAdmin.register Bigcategory do
 	form do |f|
 		f.inputs "Bigcategory Details" do
 			f.input :name
-			f.input :image
+			f.input :image, input_html: { class: 'image' }
+			bigcategory = Bigcategory.find(params[:id])
+			if bigcategory.image.present?
+				div class: 'preview_image' do
+					image_tag(bigcategory.image ,height: 120, width: 180, id: "output")
+				end
+			else
+				div class: 'hidden preview_image' do
+					image_tag('' ,height: 120, width: 180, id: "output")
+				end
+			end
 		end
 		f.actions
 	end
