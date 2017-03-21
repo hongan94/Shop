@@ -1,0 +1,23 @@
+.row
+  .col-xs-6
+    .show_image
+      = image_tag(@product.image, width: 400, height: 300)
+  .col-xs-6
+    .pr_detail style="text-align: center"
+      | Product Detail
+    span
+      | Name:
+      = @product.name
+      br
+    span
+      | Price:
+      = @product.price
+      | đ
+      br
+    span
+      | Description:
+      = @product.description
+      br
+    span
+      | Quantity:
+

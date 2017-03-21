@@ -1,0 +1,10 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.show_product {
+  thead {
+    th {
+      background-image: linear-gradient(180deg, #e2e2e2, #d2d4d6);
+    }
+  }
+}

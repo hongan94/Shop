@@ -6,4 +6,17 @@ Rails.application.routes.draw do
   # get '/users/:id', to: 'users/omniauth_callbacks#show', as: 'user'
   root to: 'home#index'
   resources :thing
+  resources :products do
+    member do
+      get 'add'
+    end
+	end
+
+  resources :carts, only: :show do
+    collection do
+      put :add
+      put :update
+      delete :destroy
+    end
+  end
 end

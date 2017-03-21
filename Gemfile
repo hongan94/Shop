@@ -36,6 +36,7 @@ gem "font-awesome-rails"
 gem 'chartkick'
 gem 'active_admin_flat_skin'
 gem 'kaminari'
+gem 'acts_as_shopping_cart'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

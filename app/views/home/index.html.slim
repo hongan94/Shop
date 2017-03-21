@@ -1,4 +1,4 @@
-= content_for :advertisement
+= content_for :discount
   .row.pr_discount
     - @post_array.each do |product|
       .col-xs-4
@@ -25,11 +25,23 @@
           .row
             - Product.where(category_id: Category.find_by(bigcategory_id: big.id)).last(6).each do |product|
               .image.col-xs-4
-                = link_to image_tag(product.image, width: 300, height: 150)
+                = link_to image_tag(product.image, width: 300, height: 150, class: 'product_image'), product_path(product.id)
+                .product_name style="text-align: center; font-size: 20px; color: darkblue;"
+                  = product.name
                 .price style="color: red; text-align: center"
-                  = product.price
-                  span
-                    | &nbsp;
-                    | VND
+                  .sale_price style="font-size: 20px"
+                    = product.price
+                    span
+                      | đ
+                    - if product.discount.present?
+                      span style="text-decoration: line-through; margin-left: 5px; color: darkblue; font-size: 17px"
+                        | &nbsp;
+                        = (product.price + (product.discount * product.price) /100)
+                        span
+                          | đ
+                      span.sale_off
+                        | -
+                        = product.discount
+                        | %
 
 

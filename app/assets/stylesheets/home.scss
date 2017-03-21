@@ -19,6 +19,7 @@
 }
 .mg-top {
   margin-top: 60px;
+  width: 100%;
   display: inline-block;
   .col-xs-2 {
     padding-left: 0
@@ -120,4 +121,14 @@ li {
 }
 .btn-default {
   height: 33px !important;
+}
+
+.sale_off {
+  margin-left: 5px;
+  background-color: red;
+  color: #fff;
+  font-size: 15px;
+}
+.product_image {
+  border-style: ridge;
 }
