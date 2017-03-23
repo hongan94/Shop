@@ -57,8 +57,14 @@ nav.navbar.navbar-default.menu
               = link_to '#', data: { target: '#modal_register', toggle: 'modal' }
                 | Sign up
           li
-            = link_to '#'
+            = link_to '#', data: { target: '#modal_show_cart', toggle: 'modal' }
               i.fa.fa-shopping-cart style="color: #fff; font-size: 20px"
+              span.counter
+                - @item  = CartItem.where(owner_id: session[:cart_id])
+                - if @item.present?
+                  = @item.count
+                - else
+                  | 0
 #modal_login.modal.fade role ="dialog"
   .modal-dialog
     .modal-content
@@ -122,6 +128,49 @@ nav.navbar.navbar-default.menu
         = link_to destroy_user_session_path, method: :delete, class: 'btn btn-default'
           | Ok
 
+#modal_show_cart.modal.fade role ="dialog"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          | &times;
+        h4
+          | Your Cart
+      - @item  = CartItem.where(owner_id: session[:cart_id])
+      .modal-body
+        h4
+          table.table
+            thead
+              tr
+                th
+                  | #
+                th
+                  | Name
+                th
+                  | Price
+                th
+                  | Quantity
+                th
+                  | Total
+            tbody
+              - @item.each_with_index do |value, index|
+                tr
+                  th[scope="row"]
+                    = index+1
+                  td
+                    = Product.find(value.item_id).name
+                  td
+                    = value.price_cents
+                    | đ
+                  td
+                    = value.quantity
+                  td
+
+      .modal-footer
+        button.btn.btn-default type="button" data-dismiss="modal"
+          | Cancel
+        = link_to destroy_user_session_path, method: :delete, class: 'btn btn-default'
+          | Ok
 javascript:
   $(document).ready(function()
   {

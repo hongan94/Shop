@@ -19,12 +19,14 @@
 }
 .mg-top {
   margin-top: 60px;
+  width: 100%;
   display: inline-block;
   .col-xs-2 {
     padding-left: 0
   }
 }
 .menu-left {
+  white-space: nowrap;
   li {
     list-style: none;
   }
@@ -120,4 +122,24 @@ li {
 }
 .btn-default {
   height: 33px !important;
+}
+
+.sale_off {
+  margin-left: 5px;
+  background-color: red;
+  color: #fff;
+  font-size: 15px;
+}
+.product_image {
+  border-style: ridge;
+}
+.counter {
+  color: #fff;
+  background-color: #ff0000;
+  padding: 2px 8px;
+  border-radius: 48%;
+  font-size: 13px;
+  position: relative;
+  top: -8px;
+  left: -7px;
 }

@@ -2,7 +2,7 @@ ActiveAdmin.register Product do
 	# Strong parameters trong Rails
 	# cho phép Rails controllers nhận giá trị truyền từ views
 	# Cho các thuộc tính được khai báo dưới đây
-	permit_params :image, :name, :description, :price, :qty, :category_id, :brand_id
+	permit_params :image, :name, :description, :price, :qty, :category_id, :brand_id, :discount
 
 	index do
 		selectable_column
@@ -17,7 +17,10 @@ ActiveAdmin.register Product do
 		column :category_id do |cate|
 			Category.find(cate.category)
 		end
-		column :brand_id
+		column :brand_id do |br|
+			Brand.find(br.brand) if br.brand.present?
+		end
+		column :discount
 		actions
 	end
 
@@ -29,6 +32,28 @@ ActiveAdmin.register Product do
 	filter :price
 	filter :qty
 	# Các thuộc tính sẽ được hiển thị để Admin nhập giá trị
+
+	show do #hien thi o page show
+		attributes_table do
+			row :name
+			row :image do |image|
+				image_tag image.image, class: 'my_image_size'
+			end
+			row :description
+			row :price
+			row :qty
+			row :category_id do |cate|
+				Category.find(cate.category)
+			end
+			row :brand_id do |br|
+				Brand.find(br.brand) if br.brand.present?
+			end
+			row :discount
+			row :created_at
+			row :updated_at
+		end
+	end
+
 	form do |f|
 		f.inputs "Product Details" do
 			f.input :name
@@ -54,6 +79,7 @@ ActiveAdmin.register Product do
 			f.input :qty
 			f.input :category_id, label: 'Category', as: :select, collection: Category.all, include_blank: false
 			f.input :brand_id, label: 'Brand', as: :select, collection: Brand.all, include_blank: false
+			f.input :discount
 		end
 		f.actions
 	end
