@@ -1,10 +1,41 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.show_product {
-  thead {
-    th {
-      background-image: linear-gradient(180deg, #e2e2e2, #d2d4d6);
+.info {
+  .show_product {
+    thead {
+      th {
+        background-image: linear-gradient(180deg, #e2e2e2, #d2d4d6);
+      }
     }
   }
+  .pr_detail {
+    font-size: 30px;
+    text-shadow: 2px 1px darkblue;
+  }
+  span {
+    font-size: 18px;
+    text-shadow: 0px 1px rebeccapurple;
+    .col-xs-8 {
+      font-size: 14px;
+      color: #000;
+    }
+    .price {
+      color: red;
+    }
+  }
+  .add_cart {
+    background-color: #d60c0c;
+    color: #fff;
+    margin-top: 20px;
+  }
+  .qty_buy {
+    border: 2px solid #000;
+    padding: 10px 8px;
+  }
+}
+.sure {
+  padding: 0px 18px;
+  height: 30px !important;
+  float: right;
 }

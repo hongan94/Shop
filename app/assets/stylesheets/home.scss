@@ -26,6 +26,7 @@
   }
 }
 .menu-left {
+  white-space: nowrap;
   li {
     list-style: none;
   }
@@ -131,4 +132,14 @@ li {
 }
 .product_image {
   border-style: ridge;
+}
+.counter {
+  color: #fff;
+  background-color: #ff0000;
+  padding: 2px 8px;
+  border-radius: 48%;
+  font-size: 13px;
+  position: relative;
+  top: -8px;
+  left: -7px;
 }
