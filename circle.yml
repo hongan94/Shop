@@ -6,7 +6,7 @@ machine:
     CIRCLE_ENV: test
 test:
   post:
-    - bundle exec rspec
+    - coverage report -m
 # deployment:
 #   staging:
 #     branch: develop
