@@ -38,6 +38,7 @@ gem 'active_admin_flat_skin'
 gem 'kaminari'
 gem 'acts_as_shopping_cart'
 
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -64,6 +65,10 @@ group :development, :test do
   gem 'capistrano-chruby'
   gem 'capistrano-rbenv-install'
   gem 'capistrano-unicorn-nginx'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers', require: false
+  gem 'simplecov', :require => false, :group => :test
 end
 
 group :development do

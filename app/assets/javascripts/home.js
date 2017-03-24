@@ -12,25 +12,31 @@ $(document).on('turbolinks:load', function(){
         $(this).toggleClass('hover');
     });
 
-    $('.remove_cart').click(function(){
+    $(document).on('click', '.remove_cart', function(){
         item_id = $(this).data('id');
         var info = { item_id: item_id };
+
         $.ajax ({
             method: 'delete',
             url: '/carts',
             data: info,
             dataType: 'script',
+            success:function(res){
+                $('#modal_show_cart').load(location.href + " #modal_show_cart>*","");
+                $('.navbar-right').load(location.href + " .navbar-right>*","");
+            }
         });
     });
 
     $('.remove_all').click(function(){
         delete_all = $(this).data("delete-all");
-        var info = { delete_all: delete_all }
+        var info = { delete_all: delete_all };
         $.ajax ({
            method: 'delete',
             url: '/carts',
             data: info,
             dataType: 'script'
         });
-    })
+    });
+
 });
