@@ -16,8 +16,7 @@
         .col-xs-4
           | Price:
         .col-xs-8.price
-          = @product.price
-          | đ
+          = number_to_currency(@product.price, unit: "đ", precision: 0, format: "%n %u")
         br
       span.sd
         .col-xs-4
