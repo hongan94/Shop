@@ -135,42 +135,81 @@ nav.navbar.navbar-default.menu
         button.close type="button" data-dismiss="modal"
           | &times;
         h4
-          | Your Cart
+          - @item = CartItem.where(owner_id: session[:cart_id])
+          - if @item.present?
+            | Giỏ hàng bạn có
+            | &nbsp;
+            = @item.count
+            | &nbsp;
+            | sản phẩm
+          - else
+            | Giỏ hàng bạn có 0 sản phẩm
       - @item  = CartItem.where(owner_id: session[:cart_id])
       .modal-body
         h4
           table.table
             thead
-              tr
+              tr.text_total
                 th
-                  | #
+                  | ID
                 th
-                  | Name
+                  | Tên
                 th
-                  | Price
+                  | Ảnh
                 th
-                  | Quantity
+                  | Giá
                 th
-                  | Total
+                  | SL
+                th
+                  | Thành tiền
             tbody
+              - @total = 0
               - @item.each_with_index do |value, index|
+                - @total_per = value.quantity * value.price_cents/100
                 tr
                   th[scope="row"]
                     = index+1
                   td
                     = Product.find(value.item_id).name
+                    br
+                    = link_to '', remote: true, class: "remove_cart", data: { id: value.id }, style: "color: red"
+                      span.fa.fa-times
                   td
-                    = value.price_cents
-                    | đ
+                    = image_tag(Product.find(value.item_id).image, height: 50, width: 50)
+
+                  td
+                    span.total
+                      = value.price_cents/100
+                      | đ
                   td
                     = value.quantity
                   td
+                    span.total
+                      = @total_per
+                      | đ
+                - @total += value.total_price/100
+              tr
+                td[colspan = "5"]
+                  span.text_total
+                    | Tổng giá:
+                  span.total.total_price
+                    =  number_to_currency(@total, unit: "đ", precision: 0, format: "%n %u")
 
       .modal-footer
-        button.btn.btn-default type="button" data-dismiss="modal"
-          | Cancel
-        = link_to destroy_user_session_path, method: :delete, class: 'btn btn-default'
-          | Ok
+        = link_to "", class: "btn payment", type: "button", data: { dismiss: "modal"}, style: "float: left"
+          span.fa.fa-long-arrow-left
+          | &nbsp;
+          | Tiếp tục mua
+
+        = link_to "", remote: true, class: "btn payment remove_all ", data: { delete_all: "1" }
+          | Xóa tất cả
+          | &nbsp;
+          span.fa.fa-times
+
+        = link_to "", method: :delete, class: 'btn payment'
+          | Payment
+          | &nbsp;
+          span.fa.fa-long-arrow-right
 javascript:
   $(document).ready(function()
   {
