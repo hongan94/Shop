@@ -18,15 +18,14 @@ class CartsController < ActionController::Base
 	end
 
 	def destroy
-		if params[:id].present?
-			@item = CartItem.find(params[:id])
+		if params[:item_id].present?
+			@item = CartItem.find(params[:item_id])
 			@item.destroy
-		else
-			@item  = CartItem.where(owner_id: session[:cart_id])
-			@item.destroy_all
 		end
-		flash[:notice] = "You has remove item successfully!"
-		redirect_to cart_path(session[:cart_id])
+		if params[:delete_all].present?
+			CartItem.delete_all
+		end
+
 	end
 
 	def show
