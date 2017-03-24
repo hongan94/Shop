@@ -6,7 +6,6 @@ machine:
     CIRCLE_ENV: test
 test:
   post:
-    - bundle exec rubocop
     - bundle exec rspec
 # deployment:
 #   staging:
