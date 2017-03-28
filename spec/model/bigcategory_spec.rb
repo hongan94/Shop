@@ -7,6 +7,6 @@ RSpec.describe Bigcategory, type: :model do
 	end
 
 	describe 'association' do
-		it { should have_many(:categories) }
+		it { should have_many(:categori) }
 	end
 end
