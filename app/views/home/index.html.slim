@@ -30,15 +30,11 @@
                   = product.name
                 .price style="color: red; text-align: center"
                   .sale_price style="font-size: 20px"
-                    = product.price
-                    span
-                      | đ
+                    = number_to_currency(product.price, unit: "đ", precision: 0, format: "%n %u")
                     - if product.discount.present?
                       span style="text-decoration: line-through; margin-left: 5px; color: darkblue; font-size: 17px"
                         | &nbsp;
-                        = (product.price + (product.discount * product.price) /100)
-                        span
-                          | đ
+                        = number_to_currency((product.price + (product.discount * product.price) /100), unit: "đ", precision: 0, format: "%n %u")
                       span.sale_off
                         | -
                         = product.discount

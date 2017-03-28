@@ -1,0 +1,22 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/neolab/project/test_login/spec/model/category_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        2,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1490343290
+  }
+}
