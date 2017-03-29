@@ -15,7 +15,7 @@
 # gem 'pg'
 #
 default: &default
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
@@ -27,7 +27,7 @@ development:
   username: neolab
   password: neolab
   host: localhost
-  port: 3306
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -65,7 +65,7 @@ test:
   username: neolab
   password: neolab
   host: localhost
-  port: 3306
+
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
