@@ -188,10 +188,16 @@ nav.navbar.navbar-default.menu
                 - @total += value.total_price/100
               tr
                 td[colspan = "5"]
-                  span.text_total
-                    | Tổng giá:
-                  span.total.total_price
-                    =  number_to_currency(@total, unit: "đ", precision: 0, format: "%n %u")
+                  .col-md-6
+                    span.text_total
+                      | Tổng giá:
+                    span.total.total_price
+                      =  number_to_currency(@total, unit: "đ", precision: 0, format: "%n %u")
+                  .col-md-6
+                    span.text_total
+                      | Discount
+                    span.total.total_price
+                      = number_to_currency(CartItem.first.discount(@item), unit: 'd', precision: 0, format: "%n %u")
 
       .modal-footer
         = link_to "", class: "btn payment", type: "button", data: { dismiss: "modal"}, style: "float: left"
