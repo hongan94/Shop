@@ -88,6 +88,8 @@ test:
 #
 production:
   <<: *default
-  database: shop_production
-  username: shop
-  password: <%= ENV['SHOP_DATABASE_PASSWORD'] %>
+  host: ec2-54-163-240-7.compute-1.amazonaws.com
+  port: 5432
+  database: dapali3dtrpkv9
+  username: reksyadauorsdg
+  password: 03dbf770336909b1129e4769a5fff810313170ead455be4fb15253a38fb2cc1c
