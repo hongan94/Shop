@@ -1,95 +1,43 @@
-= content_for :advertisement
+= content_for :discount
   .row.pr_discount
     - @post_array.each do |product|
-      .col-lg-4
+      .col-xs-4
         = link_to image_tag(product[:image]), product[:link]
         br
         h6
           = product[:title]
 .container
-  .row.mom_baby
-    .col-lg-2
-      = link_to image_tag("mom_baby", width: 30, heigth: 30), "#"
-      h5.title
-        | Mẹ và bé
-    .col-lg-9
-      .category
-        .ct2
-          = link_to image_tag("sua", width: 60, height:45)
-          h5
-            | Sữa & bộ cho bé
-        .ct2
-          = link_to image_tag("dodung", width: 60, height:45)
-          h5
-            | Đồ dùng cho bé
-        .ct2
-          = link_to image_tag("dochoi", width: 60, height:45)
-          h5
-            | Đồ chơi & đồ dùng
-        .ct2
-          = link_to image_tag("quanao", width: 60, height:45)
-          h5
-            | Quần sáo sơ sinh
-        .ct2
-          = link_to image_tag("thucpham", width: 60, height:45)
-          h5
-            | Thực phẩm
-        .ct2
-          = link_to image_tag("thoitrang", width: 60, height:45)
-          h5
-            | Thời trang cho mẹ
-        .ct2
-          = link_to image_tag("vesinh", width: 60, height:45)
-          h5
-            | Vệ sinh cho bé
-        .ct2
-          = link_to image_tag("chamsoc", width: 60, height:45)
-          h5
-            | Chăm sóc cho mẹ
-        .ct2
-          = link_to image_tag("xe", width: 60, height:45)
-          h5
-            | Xe & các thiết bị
-  .row.fashion
-    .col-lg-2
-      = link_to image_tag("dress", width: 30, heigth: 30), "#"
-      h5.title
-        | Thời trang
-    .col-lg-9
-      .category
-        .ct2
-          = link_to image_tag("sua", width: 60, height: 45)
-          h5
-            | Sữa & bộ cho bé
-        .ct2
-          = link_to image_tag("dodung", width: 60, height: 45)
-          h5
-            | Đồ dùng cho bé
-        .ct2
-          = link_to image_tag("dochoi", width: 60, height: 45)
-          h5
-            | Đồ chơi & đồ dùng
-        .ct2
-          = link_to image_tag("quanao", width: 60, height: 45)
-          h5
-            | Quần sáo sơ sinh
-        .ct2
-          = link_to image_tag("thucpham", width: 60, height: 45)
-          h5
-            | Thực phẩm
-        .ct2
-          = link_to image_tag("thoitrang", width: 60, height: 45)
-          h5
-            | Thời trang cho mẹ
-        .ct2
-          = link_to image_tag("vesinh", width: 60, height: 45)
-          h5
-            | Vệ sinh cho bé
-        .ct2
-          = link_to image_tag("chamsoc", width: 60, height: 45)
-          h5
-            | Chăm sóc cho mẹ
-        .ct2
-          = link_to image_tag("xe", width: 60, height: 45)
-          h5
-            | Xe & các thiết bị
+  - @bigcategory.each do |big|
+    .row.title_big
+      .col-xs-2
+        input.hidden value="#{@bigcategory.count}"
+        = link_to image_tag(big.image, width: 30, heigth: 30), "#"
+        h5.title
+          = big.name
+      .col-xs-9
+        .row
+          .category
+            - big.categories.each do |category|
+              .ct2
+                = link_to image_tag(category.image, width: 60, height:45)
+                h5
+                  = category.name
+          .row
+            - Product.where(category_id: Category.find_by(bigcategory_id: big.id)).last(6).each do |product|
+              .image.col-xs-4
+                = link_to image_tag(product.image, width: 300, height: 150, class: 'product_image'), product_path(product.id)
+                .product_name style="text-align: center; font-size: 20px; color: darkblue;"
+                  = product.name
+                .price style="color: red; text-align: center"
+                  .sale_price style="font-size: 20px"
+                    = number_to_currency(product.price, unit: "đ", precision: 0, format: "%n %u")
+                    - if product.discount.present?
+                      span style="text-decoration: line-through; margin-left: 5px; color: darkblue; font-size: 17px"
+                        | &nbsp;
+                        = number_to_currency((product.price + (product.discount * product.price) /100), unit: "đ", precision: 0, format: "%n %u")
+                      span.sale_off
+                        | -
+                        = product.discount
+                        | %
+
+

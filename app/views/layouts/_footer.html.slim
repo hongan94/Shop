@@ -1,0 +1,33 @@
+.container style="background-color: #55b4db; margin-top: 10px;"
+  .row
+    .col-xs-4 style="color: #fff; margin-top: 10px;"
+      | Phone:
+      br
+      | 0906.512.162
+    .col-xs-4 style="color: #fff; margin-top: 10px;"
+      | Contact:
+      br
+      | FacebooK:
+      br
+      | Gmail: phamhongan2201@gmail.com
+    .col-xs-4 style="color: #fff;  margin-top: 10px;"
+      | Google Map:
+      #map-canvas
+
+javascript:
+    function initialize() {
+        var map = new google.maps.Map(document.getElementById(“googleMap”)
+    ,
+        mapProp
+    )
+        ;
+        var mapOptions = {
+
+            center: new google.maps.LatLng(10.829897, 106.766314),
+            zoom: 20,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);

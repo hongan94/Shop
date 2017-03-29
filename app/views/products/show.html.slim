@@ -1,0 +1,81 @@
+.row
+  .col-xs-6
+    .show_image
+      = image_tag(@product.image, width: 400, height: 300)
+  .col-xs-6
+    .info
+      .pr_detail style="text-align: center"
+        | Product Detail
+      span.sn
+        .col-xs-4
+          | Name:
+        .col-xs-8
+          = @product.name
+        br
+      span.sp
+        .col-xs-4
+          | Price:
+        .col-xs-8.price
+          = number_to_currency(@product.price, unit: "đ", precision: 0, format: "%n %u")
+        br
+      span.sd
+        .col-xs-4
+          | Description:
+        .col-xs-8
+          = @product.description
+        br
+      span.sq
+        .col-xs-4
+          | Quantity:
+        .col-xs-8
+          = number_field(:f,:quanitty, in: 0..1000, step: 1, data: { id: @product.id }, class: 'qty_buy')
+        br
+      .col-xs-12
+        = link_to '', type: "submit", class: "btn btn-lg add_cart", data: { toggle: "modal", target: "#confirm_buy"}
+          span.fa.fa-shopping-cart
+            | &nbsp;
+            | Add to Cart
+    .modal#confirm_buy
+      .modal-dialog.modal-sm
+        .modal-content
+          .modal-header.bg-info
+            button type="button" class="close" data-dismiss="modal"
+              | &times;
+            h4.modal-title
+              | Confirm
+          .modal-body
+            .content
+              span.text
+                | Are you sure?
+          .modal-footer
+            button.btn.btn-info.sure
+              | Ok
+
+javascript:
+    $(function(){
+        $('a[type="submit"]').click(function(){
+            var a = $('.qty_buy');
+            var id = a.data('id');
+            var quantity = a.val();
+            if(quantity == 0) {
+                $('#confirm_buy').find('span').text('Please enter quantity');
+                $('.sure').addClass('hide');
+                $('#confirm_buy').css('display', 'block', 'top','400px');
+                $('.modal').css("top", '30%');
+            }else {
+                $('#confirm_buy').find('span').text('Are you sure?');
+                $('.sure').addClass('show');
+                $('#confirm_buy').css('display', 'block', 'top','400px');
+                $('.modal').css("top", '30%');
+                $('.sure').click(function(){
+                    var info = { id: id, quantity: quantity}
+                    $.ajax ({
+                        method: 'PUT',
+                        url: '/carts/add',
+                        data: info,
+                        dataType: 'script',
+                    });
+                });
+            }
+        });
+    });

@@ -1,9 +1,9 @@
 nav.navbar.navbar-default.menu
   .container.header_menu
     .row
-      .col-lg-3
+      .col-xs-3
         .navbar-header
-          = link_to '#', class: 'navbar-brand'
+          = link_to root_path, class: 'navbar-brand'
             | LOGO
         /#menu-header.collapse.navbar-collapse
         /  ul.nav.navbar-nav
@@ -32,20 +32,186 @@ nav.navbar.navbar-default.menu
         /        li
         /          = link_to '#'
         /            | One more separated link
-      .col-lg-6
+      .col-xs-6
         form.navbar-form.navbar-left.search
           .form-group
             input.form-control[type="text" placeholder="Search"]
           button.btn.btn-default[type="submit"]
-            | Submit
-      .col-lg-3
+            | Search
+      .col-xs-3
         ul.nav.navbar-nav.navbar-right
+          - if current_user.present?
+            li
+              = link_to '#'
+                i.fa.fa-user-o
+                | &nbsp;
+                = current_user.name
+            li
+              = link_to '#', data: { target: '#modal_logout', toggle: 'modal' }
+                i.fa.fa-power-off style="color: #000; font-size: 20px"
+          - else
+            li
+              = link_to '#' , data: { target: '#modal_login', toggle: 'modal' }
+                | Sign in
+            li
+              = link_to '#', data: { target: '#modal_register', toggle: 'modal' }
+                | Sign up
           li
-            = link_to '#'
-              | Login
-          li
-            = link_to '#'
-              | Logout
-          li
-            = link_to '#'
-              | Gio hang
+            = link_to '#', data: { target: '#modal_show_cart', toggle: 'modal' }, class: 'shopping_cart'
+              i.fa.fa-shopping-cart style="color: #fff; font-size: 20px"
+              span.counter
+                - @item  = CartItem.where(owner_id: session[:cart_id])
+                - if @item.present?
+                  = @item.count
+                - else
+                  | 0
+#modal_login.modal.fade role ="dialog"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          | &times;
+        h4
+          | LOGIN
+      .modal-body
+        = simple_form_for :user , url: user_session_path do |f|
+          = f.input :email
+          = f.input :password
+          = f.button :submit, class: 'submit_login hidden'
+        = link_to '#', data: { target: '#modal_register', toggle: 'modal' }
+          | Sign up
+        br
+        = link_to '#'
+          | Forgot Password
+        br
+        = link_to user_facebook_omniauth_authorize_path
+          | Login with facebook
+      .modal-footer
+        button.btn.btn-default type="button" data-dismiss="modal"
+          | Cancel
+        = link_to '#', class: 'btn btn-default login'
+          | Sign in
+#modal_register.modal.fade role ="dialog"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          | &times;
+        h4
+          | SIGN UP
+      .modal-body
+        = simple_form_for :user , url: registration_path(:user) do |f|
+          = f.input :name
+          = f.input :email
+          = f.input :password
+          = f.input :password_confirmation
+          = f.button :submit, class: 'hidden submit_signup'
+      .modal-footer
+        button.btn.btn-default type="button" data-dismiss="modal"
+          | Cancel
+        = link_to '#', class: 'btn btn-default signup'
+          | Sign up
+#modal_logout.modal.fade role ="dialog"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          | &times;
+        h4
+          | SIGN OUT
+      .modal-body
+        h4
+          | Are you sure ?
+      .modal-footer
+        button.btn.btn-default type="button" data-dismiss="modal"
+          | Cancel
+        = link_to destroy_user_session_path, method: :delete, class: 'btn btn-default'
+          | Ok
+
+#modal_show_cart.modal.fade role ="dialog"
+  .modal-dialog[onload="script();"]
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          | &times;
+        h4
+          - @item = CartItem.where(owner_id: session[:cart_id])
+          - if @item.present?
+            | Giỏ hàng bạn có
+            | &nbsp;
+            = @item.count
+            | &nbsp;
+            | sản phẩm
+          - else
+            | Giỏ hàng bạn có 0 sản phẩm
+      - @item  = CartItem.where(owner_id: session[:cart_id])
+      .modal-body
+        h4
+          table.table
+            thead
+              tr.text_total
+                th
+                  | ID
+                th
+                  | Tên
+                th
+                  | Ảnh
+                th
+                  | Giá
+                th
+                  | SL
+                th
+                  | Thành tiền
+            tbody
+              - @total = 0
+              - @item.each_with_index do |value, index|
+                - @total_per = value.quantity * value.price_cents/100
+                tr
+                  th[scope="row"]
+                    = index+1
+                  td
+                    = Product.find(value.item_id).name
+                    br
+                    = link_to '', remote: true, class: "remove_cart", data: { id: value.id }, style: "color: red"
+                      span.fa.fa-times
+                  td
+                    = image_tag(Product.find(value.item_id).image, height: 50, width: 50)
+
+                  td
+                    span.total
+                      =  number_to_currency(value.price_cents/100, unit: "đ", precision: 0, format: "%n %u")
+                  td
+                    = value.quantity
+                  td
+                    span.total
+                      = number_to_currency( @total_per, unit: "đ", precision: 0, format: "%n %u")
+                - @total += value.total_price/100
+              tr
+                td[colspan = "5"]
+                  span.text_total
+                    | Tổng giá:
+                  span.total.total_price
+                    =  number_to_currency(@total, unit: "đ", precision: 0, format: "%n %u")
+
+      .modal-footer
+        = link_to "", class: "btn payment", type: "button", data: { dismiss: "modal"}, style: "float: left"
+          span.fa.fa-long-arrow-left
+          | &nbsp;
+          | Tiếp tục mua
+
+        = link_to "", remote: true, class: "btn payment remove_all ", data: { delete_all: "1" }
+          | Xóa tất cả
+          | &nbsp;
+          span.fa.fa-times
+
+        = link_to "", method: :delete, class: 'btn payment'
+          | Payment
+          | &nbsp;
+          span.fa.fa-long-arrow-right
+javascript:
+  $(document).ready(function()
+  {
+      $('.title_big .col-xs-2').each(function (e) {
+          $(this).addClass("list" + e);
+      });
+  });

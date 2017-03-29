@@ -6,12 +6,12 @@ class Users::OmniauthCallbacksController < ApplicationController
     @name = request.env["omniauth.auth"].info.name
     @uid = request.env["omniauth.auth"].uid
     @password = Devise.friendly_token[0,8]
-    @provider = User.create(provider: @name, email: @email, uid: @uid, password: @password)
+    @user = User.create(name: @name, email: @email, uid: @uid, password: @password)
     @user = User.find_by_uid(request.env["omniauth.auth"].uid)
       if @user.persisted?
         sign_in @user, :event => :authentication #this will throw if @users is not activated
         flash[:notice] = "Successfully" if is_navigational_format?
-        redirect_to user_path(@user)
+        redirect_to root_path
       else
         session["devise.facebook_data"] = request.env["omniauth.auth"]
         redirect_to new_user_registration_url
