@@ -11,11 +11,12 @@ test:
     - bundle exec rspec spec/model/bigcategory_spec.rb
   post:
     - bundle exec rspec spec/model/category_spec.rb
-# deployment:
-#   staging:
-#     branch: develop
-#     heroku:
-#       appname: demo-ci-staging
+
+ deployment:
+   staging:
+     branch: master
+     heroku:
+       appname: fast-reef-27869
 #
 #   production:
 #     branch: master
