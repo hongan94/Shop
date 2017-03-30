@@ -194,7 +194,7 @@ nav.navbar.navbar-default.menu
                     =  number_to_currency(@total, unit: "đ", precision: 0, format: "%n %u")
 
       .modal-footer
-        = link_to "", class: "btn payment", type: "button", data: { dismiss: "modal"}, style: "float: left"
+        = link_to root_path, class: "btn payment", type: "button", style: "float: left"
           span.fa.fa-long-arrow-left
           | &nbsp;
           | Tiếp tục mua
