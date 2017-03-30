@@ -117,12 +117,12 @@ ActiveRecord::Schema.define(version: 20170330075551) do
 
   create_table "transactions", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "user_phone"
+    t.string   "user_phone"
     t.string   "user_email"
     t.string   "user_name"
-    t.integer  "amount"
+    t.float    "amount"
     t.integer  "status",       limit: 2, default: 0
-    t.string   "payment"
+    t.integer  "payment",      limit: 2, default: 0
     t.string   "payment_info"
     t.string   "message"
     t.string   "security"

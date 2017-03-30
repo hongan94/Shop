@@ -1,5 +1,9 @@
 .col-md-6
   = simple_form_for @transaction, url: transactions_path, method: :post do |f|
+    - if @transaction.errors.any?
+      .alert.alert-danger
+        - @transaction.errors.full_messages.each do |msg|
+          li = msg
     = f.input :user_name, label: "Tên Người nhận"
     = f.input :user_email, label: "Email"
     = f.input :user_phone, label: "Số điện thoại"

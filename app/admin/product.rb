@@ -12,7 +12,9 @@ ActiveAdmin.register Product do
 			image_tag image.image , class: 'my_image_size'
 		end
 		column :description
-		column :price, as: :currency, unit: "$", separator: ","
+		column :price , class: 'color_red' do |price|
+			number_to_currency(price.price, unit: "đ", precision: 0, format: "%n %u")
+		end
 		column :qty
 		column :category_id do |cate|
 			Category.find(cate.category)
