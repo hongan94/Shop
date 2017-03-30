@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       get 'add'
     end
 	end
+  resource :orders
+	resource :transactions
 
   resources :carts, only: :show do
     collection do
