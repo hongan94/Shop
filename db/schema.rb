@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321080937) do
+ActiveRecord::Schema.define(version: 20170330075551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,19 @@ ActiveRecord::Schema.define(version: 20170321080937) do
     t.index ["bigcategory_id"], name: "index_categories_on_bigcategory_id", using: :btree
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "transaction_id"
+    t.integer  "qty"
+    t.integer  "amount"
+    t.string   "data"
+    t.integer  "status",         limit: 2, default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["product_id"], name: "index_orders_on_product_id", using: :btree
+    t.index ["transaction_id"], name: "index_orders_on_transaction_id", using: :btree
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "image"
     t.string   "name"
@@ -100,6 +113,23 @@ ActiveRecord::Schema.define(version: 20170321080937) do
     t.integer  "brand_id"
     t.integer  "discount"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "user_phone"
+    t.string   "user_email"
+    t.string   "user_name"
+    t.integer  "amount"
+    t.integer  "status",       limit: 2, default: 0
+    t.string   "payment"
+    t.string   "payment_info"
+    t.string   "message"
+    t.string   "security"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "user_address"
+    t.index ["user_id"], name: "index_transactions_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -119,4 +149,7 @@ ActiveRecord::Schema.define(version: 20170321080937) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "orders", "products"
+  add_foreign_key "orders", "transactions"
+  add_foreign_key "transactions", "users"
 end
