@@ -188,19 +188,13 @@ nav.navbar.navbar-default.menu
                 - @total += value.total_price/100
               tr
                 td[colspan = "5"]
-                  .col-md-6
-                    span.text_total
-                      | Tổng giá:
-                    span.total.total_price
-                      =  number_to_currency(@total, unit: "đ", precision: 0, format: "%n %u")
-                  .col-md-6
-                    span.text_total
-                      | Discount
-                    span.total.total_price
-                      = number_to_currency(CartItem.first.discount(@item), unit: 'd', precision: 0, format: "%n %u")
+                  span.text_total
+                    | Tổng giá:
+                  span.total.total_price
+                    =  number_to_currency(@total, unit: "đ", precision: 0, format: "%n %u")
 
       .modal-footer
-        = link_to "", class: "btn payment", type: "button", data: { dismiss: "modal"}, style: "float: left"
+        = link_to root_path, class: "btn payment", type: "button", style: "float: left"
           span.fa.fa-long-arrow-left
           | &nbsp;
           | Tiếp tục mua
@@ -210,7 +204,7 @@ nav.navbar.navbar-default.menu
           | &nbsp;
           span.fa.fa-times
 
-        = link_to "", method: :delete, class: 'btn payment'
+        = link_to new_transactions_path, class: 'btn payment'
           | Payment
           | &nbsp;
           span.fa.fa-long-arrow-right
