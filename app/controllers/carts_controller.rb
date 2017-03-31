@@ -34,7 +34,7 @@ class CartsController < ActionController::Base
 
 	private
 	def set_cart
-		if session[:cart_id].present?
+		if session[:cart_id].present? && Cart.all.pluck(:id).include?(session[:cart_id])
 			@cart = Cart.find(session[:cart_id])
 		else
 			@cart = Cart.create

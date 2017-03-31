@@ -57,7 +57,7 @@ nav.navbar.navbar-default.menu
               = link_to '#', data: { target: '#modal_register', toggle: 'modal' }
                 | Sign up
           li
-            = link_to '#', data: { target: '#modal_show_cart', toggle: 'modal' }
+            = link_to '#', data: { target: '#modal_show_cart', toggle: 'modal' }, class: 'shopping_cart'
               i.fa.fa-shopping-cart style="color: #fff; font-size: 20px"
               span.counter
                 - @item  = CartItem.where(owner_id: session[:cart_id])
@@ -129,7 +129,7 @@ nav.navbar.navbar-default.menu
           | Ok
 
 #modal_show_cart.modal.fade role ="dialog"
-  .modal-dialog
+  .modal-dialog[onload="script();"]
     .modal-content
       .modal-header
         button.close type="button" data-dismiss="modal"
@@ -179,14 +179,12 @@ nav.navbar.navbar-default.menu
 
                   td
                     span.total
-                      = value.price_cents/100
-                      | đ
+                      =  number_to_currency(value.price_cents/100, unit: "đ", precision: 0, format: "%n %u")
                   td
                     = value.quantity
                   td
                     span.total
-                      = @total_per
-                      | đ
+                      = number_to_currency( @total_per, unit: "đ", precision: 0, format: "%n %u")
                 - @total += value.total_price/100
               tr
                 td[colspan = "5"]
@@ -196,7 +194,7 @@ nav.navbar.navbar-default.menu
                     =  number_to_currency(@total, unit: "đ", precision: 0, format: "%n %u")
 
       .modal-footer
-        = link_to "", class: "btn payment", type: "button", data: { dismiss: "modal"}, style: "float: left"
+        = link_to root_path, class: "btn payment", type: "button", style: "float: left"
           span.fa.fa-long-arrow-left
           | &nbsp;
           | Tiếp tục mua
@@ -206,7 +204,7 @@ nav.navbar.navbar-default.menu
           | &nbsp;
           span.fa.fa-times
 
-        = link_to "", method: :delete, class: 'btn payment'
+        = link_to new_transactions_path, class: 'btn payment'
           | Payment
           | &nbsp;
           span.fa.fa-long-arrow-right

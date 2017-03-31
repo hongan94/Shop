@@ -1,0 +1,39 @@
+.col-md-6
+  = simple_form_for @transaction, url: transactions_path, method: :post do |f|
+    - if @transaction.errors.any?
+      .alert.alert-danger
+        - @transaction.errors.full_messages.each do |msg|
+          li = msg
+    = f.input :user_name, label: "Tên Người nhận"
+    = f.input :user_email, label: "Email"
+    = f.input :user_phone, label: "Số điện thoại"
+    = f.input :user_address, label: "Địa chỉ người nhận"
+    = f.collection_radio_buttons :payment, [[1, 'Trả tiền khi nhận hàng'] ,[0, 'Thanh toán trực tiếp']], :first, :last, :checked => 1
+    = f.input :message, label: "Lời nhắn của bạn"
+    = f.submit 'Đặt hàng'
+.col-md-6
+  h1 Thông tin đơn hàng
+  .col-md-12
+    - @total = 0
+    - @item = CartItem.where(owner_id: session[:cart_id])
+    - @item.each do |item|
+      h4
+        | Sản phẩm:
+        = Product.find(item.item_id).name
+        = image_tag(Product.find(item.item_id).image, height: 50, width: 50, class: 'pull-right')
+      h4
+        | Số lượng:
+        = item.quantity
+      h4
+        | Giá:
+        = number_to_currency(item.price_cents/100, unit: "đ", precision: 0, format: "%n %u")
+        | x
+        = item.quantity
+        | =
+        = number_to_currency(item.price_cents/100 * item.quantity, unit: "đ", precision: 0, format: "%n %u")
+      - @total += item.total_price/100
+      br
+    h4
+      | Tổng Giá:
+      = number_to_currency(@total, unit: "đ", precision: 0, format: "%n %u")
+
