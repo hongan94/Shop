@@ -11,7 +11,10 @@ ActiveAdmin.register Transaction do
 		column :user_name
 		column :user_email
 		column :user_phone
-		column :amount
+		column :user_address
+		column :amount, class: "color_red" do |amount|
+			number_to_currency(amount.amount, unit: "đ", precision: 0, format: "%n %u")
+		end
 		column :payment
 		column :payment_info
 		column :message
@@ -25,6 +28,7 @@ ActiveAdmin.register Transaction do
 			row :user_name
 			row :user_email
 			row :user_phone
+			row :user_address
 			row :amount
 			row :payment
 			row :payment_info
@@ -44,6 +48,7 @@ ActiveAdmin.register Transaction do
 			f.input :user_name
 			f.input :user_email
 			f.input :user_phone
+			f.input :user_address
 			f.input :amount
 			f.input :message
 		end

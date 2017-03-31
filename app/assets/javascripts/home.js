@@ -28,14 +28,18 @@ $(document).on('turbolinks:load', function(){
         });
     });
 
-    $('.remove_all').click(function(){
+    $(document).on('click', '.remove_all', function(){
         delete_all = $(this).data("delete-all");
         var info = { delete_all: delete_all };
         $.ajax ({
            method: 'delete',
             url: '/carts',
             data: info,
-            dataType: 'script'
+            dataType: 'script',
+            success:function(res){
+                $('#modal_show_cart').load(location.href + " #modal_show_cart>*","");
+                $('.navbar-right').load(location.href + " .navbar-right>*","");
+            }
         });
     });
 

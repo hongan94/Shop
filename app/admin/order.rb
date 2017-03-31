@@ -11,7 +11,9 @@ ActiveAdmin.register Order do
 		column :transaction_id
 		column :product_id
 		column :qty
-		column :amount
+		column :amount, class: 'color_red' do |amount|
+			number_to_currency(amount.amount, unit: "đ", precision: 0, format: "%n %u")
+		end
 		column :data
 		column :status
 		actions
