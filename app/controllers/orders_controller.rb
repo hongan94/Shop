@@ -5,10 +5,6 @@ class OrdersController < ApplicationController
 	end
 
 	def create
-		@order = Order.new(params_order)
-		if @order.save
-			flash[:notice] = "Bạn đã order thành công"
-		end
 	end
 
 	private

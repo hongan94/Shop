@@ -8,7 +8,7 @@
     = f.input :user_email, label: "Email"
     = f.input :user_phone, label: "Số điện thoại"
     = f.input :user_address, label: "Địa chỉ người nhận"
-    = f.collection_radio_buttons :payment, [[1, 'Trả tiền khi nhận hàng'] ,[0, 'Thanh toán trực tiếp']], :first, :last, :checked => '1'
+    = f.collection_radio_buttons :payment, [[1, 'Trả tiền khi nhận hàng'] ,[0, 'Thanh toán trực tiếp']], :first, :last, :checked => 1
     = f.input :message, label: "Lời nhắn của bạn"
     = f.submit 'Đặt hàng'
 .col-md-6
