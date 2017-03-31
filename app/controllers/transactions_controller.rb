@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
 	layout 'auth'
+	before_filter :corvert, only: :create
 	def new
 		@transaction = Transaction.new
 	end
@@ -33,5 +34,9 @@ class TransactionsController < ApplicationController
 		else
 			params.required(:transaction).permit(:user_name, :user_phone, :user_email, :user_address, :payment, :message, :amount)
 		end
+	end
+
+	def corvert
+		params[:transaction][:payment] = params[:transaction][:payment].to_i
 	end
 end

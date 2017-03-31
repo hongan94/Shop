@@ -100,7 +100,7 @@ nav.navbar.navbar-default.menu
         h4
           | SIGN UP
       .modal-body
-        = simple_form_for :user , url: registration_path(:user) do |f|
+        = simple_form_for :user , method: :post, url: user_registration_path do |f|
           = f.input :name
           = f.input :email
           = f.input :password

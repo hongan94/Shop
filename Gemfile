@@ -66,6 +66,7 @@ group :development, :test do
   gem 'capistrano-rbenv-install'
   gem 'capistrano-unicorn-nginx'
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', require: false
   gem 'simplecov', :require => false, :group => :test
