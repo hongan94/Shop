@@ -4,7 +4,7 @@ RSpec.describe Transaction, type: :model do
 
   describe 'scope' do
 		context 'get transaction have value > 1000000' do
-      let!(:transaction) { create(:transaction, amount: 500000)}
+      let!(:transaction) { create(:transaction, amount: 50000000)}
 			let!(:transaction1) { create(:transaction, amount: 1000000)}
 			let!(:transaction2) { create(:transaction, amount: 1500000)}
 
